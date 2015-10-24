@@ -9,9 +9,26 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
+    @IBOutlet weak var hintDescriptionLabel: UILabel!
+    
+    var cardArray: [Card] = []
+    var coreDataStack: CoreDataStack!
+    var deck: Stack!
+    
+    func shuffleArray<T>(var array: Array<T>) -> Array<T> {
+        for var index = array.count - 1; index > 0; index-- {
+            let j = Int(arc4random_uniform(UInt32(index-1)))
+        
+            swap(&array[index], &array[j])
+        }
+        return array
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cardArray = shuffleArray(Array(deck.cards))
+        hintDescriptionLabel.text = cardArray.first?.hint
 
         // Do any additional setup after loading the view.
     }

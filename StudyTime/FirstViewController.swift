@@ -122,7 +122,11 @@ class FirstViewController: UITableViewController {
         alertController.addAction(cancelAlertAction)
         
         let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
-            self.performSegueWithIdentifier("gameSegue", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
+            gameView.coreDataStack = self.coreDataStack
+            gameView.deck = deck
+            self.presentViewController(gameView, animated: true, completion: nil)
         }
         alertController.addAction(freeModeAlertAction)
         
