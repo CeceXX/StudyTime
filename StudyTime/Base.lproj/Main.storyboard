@@ -40,7 +40,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Decks" id="DRf-6A-DPf">
-                        <barButtonItem key="leftBarButtonItem" image="945-radar-toolbar" id="jeF-Of-cpk"/>
+                        <barButtonItem key="leftBarButtonItem" image="945-radar-toolbar" id="jeF-Of-cpk">
+                            <connections>
+                                <action selector="lookForPlayers" destination="E9c-NH-Bnr" id="Sa2-uD-OXk"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qFd-ZR-Mk7">
                             <connections>
                                 <action selector="addDeck" destination="E9c-NH-Bnr" id="f03-jP-slz"/>

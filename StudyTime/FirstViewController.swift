@@ -8,12 +8,19 @@
 
 import UIKit
 import CoreData
+import MultipeerConnectivity
 
 class FirstViewController: UITableViewController {
     
     let coreDataStack = CoreDataStack.sharedStack
     
     var decks: [Stack] = []
+    
+    // Multipeer
+    var session: MCSession!
+    var browser: MCBrowserViewController!
+    var assistant: MCAdvertiserAssistant!
+    
     
     // MARK: - Lifecycle
 
@@ -22,6 +29,20 @@ class FirstViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         getDecks()
+        
+        // Multipeer
+        let peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
+        
+        session = MCSession(peer: peerID)
+        session.delegate = self
+        
+        browser = MCBrowserViewController(serviceType: "StudyTime", session: session)
+//        browser.minimumNumberOfPeers = 1
+        browser.maximumNumberOfPeers = 1
+        browser.delegate = self
+        
+        assistant = MCAdvertiserAssistant(serviceType: "StudyTime", discoveryInfo: nil, session: session)
+        assistant.start()
         
         // Register cell
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -72,6 +93,11 @@ class FirstViewController: UITableViewController {
         }
         
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func lookForPlayers() {
+        
+        self.presentViewController(browser, animated: true, completion: nil)
     }
     
     func createDeckWithName(name: String) {
@@ -146,3 +172,53 @@ class FirstViewController: UITableViewController {
 
 }
 
+extension FirstViewController: MCSessionDelegate {
+    func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
+        print("change state with: \(peerID.displayName)")
+        
+        if state == .Connected {
+            
+        }
+    }
+    
+    func session(session: MCSession, didReceiveCertificate certificate: [AnyObject]?, fromPeer peerID: MCPeerID, certificateHandler: (Bool) -> Void) {
+        print("Received certificate from: \(peerID.displayName)")
+        certificateHandler(true)
+    }
+    
+    func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
+        print("Received data from: \(peerID.displayName)")
+    }
+    
+    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print("Received stream from: \(peerID.displayName)")
+    }
+    
+    func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
+        print("Receiving resource from: \(peerID.displayName)")
+    }
+    
+    func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
+        print("Received resource from: \(peerID.displayName)")
+    }
+}
+
+extension FirstViewController: MCBrowserViewControllerDelegate {
+    func browserViewController(browserViewController: MCBrowserViewController, shouldPresentNearbyPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) -> Bool {
+        return true
+    }
+    
+    func browserViewControllerDidFinish(browserViewController: MCBrowserViewController) {
+        print("Browser did finish")
+        browserViewController.dismissViewControllerAnimated(true, completion: nil)
+        
+        let deckSelector = DeckSelectorViewController()
+        let navController = UINavigationController(rootViewController: deckSelector)
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(browserViewController: MCBrowserViewController) {
+        print("Browser was cancelled")
+        browserViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+}

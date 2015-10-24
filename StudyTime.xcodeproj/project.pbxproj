@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A712B64C1BDC367D007A6F20 /* DeckSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712B64B1BDC367D007A6F20 /* DeckSelectorViewController.swift */; };
 		A715465F1BDC0DE2008D3335 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715465E1BDC0DE2008D3335 /* AppDelegate.swift */; };
 		A71546611BDC0DE2008D3335 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546601BDC0DE2008D3335 /* FirstViewController.swift */; };
 		A71546631BDC0DE2008D3335 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546621BDC0DE2008D3335 /* SecondViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A712B64B1BDC367D007A6F20 /* DeckSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckSelectorViewController.swift; sourceTree = "<group>"; };
 		A715465B1BDC0DE2008D3335 /* StudyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A715465E1BDC0DE2008D3335 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A71546601BDC0DE2008D3335 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				A71546601BDC0DE2008D3335 /* FirstViewController.swift */,
 				A71546901BDC1502008D3335 /* CardManagerViewController.swift */,
+				A712B64B1BDC367D007A6F20 /* DeckSelectorViewController.swift */,
 			);
 			name = Study;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				A71546851BDC0E35008D3335 /* StudyTime.xcdatamodeld in Sources */,
 				A715468A1BDC0EE5008D3335 /* Card+CoreDataProperties.swift in Sources */,
 				A71546911BDC1502008D3335 /* CardManagerViewController.swift in Sources */,
+				A712B64C1BDC367D007A6F20 /* DeckSelectorViewController.swift in Sources */,
 				A71546611BDC0DE2008D3335 /* FirstViewController.swift in Sources */,
 				A71546811BDC0DF4008D3335 /* CoreDataStack.swift in Sources */,
 			);
@@ -442,6 +446,7 @@
 				A715467C1BDC0DE2008D3335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A715467D1BDC0DE2008D3335 /* Build configuration list for PBXNativeTarget "StudyTimeTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +455,7 @@
 				A715467F1BDC0DE2008D3335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
