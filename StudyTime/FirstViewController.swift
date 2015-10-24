@@ -113,6 +113,27 @@ class FirstViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let deck = decks[indexPath.row]
+        let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .Alert)
+        
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAlertAction)
+        
+        let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
+            
+        }
+        alertController.addAction(freeModeAlertAction)
+        
+        let correctnessModeAlertAction = UIAlertAction(title: "Correctness Mode", style: .Default) { (action) -> Void in
+        
+        }
+        alertController.addAction(correctnessModeAlertAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
 
 }
 
