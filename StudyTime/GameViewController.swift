@@ -15,6 +15,8 @@ class GameViewController: UIViewController {
     var coreDataStack: CoreDataStack!
     var deck: Stack!
     
+    var currentIndex = -1
+    
     func shuffleArray<T>(var array: Array<T>) -> Array<T> {
         for var index = array.count - 1; index > 0; index-- {
             let j = Int(arc4random_uniform(UInt32(index-1)))
@@ -25,14 +27,25 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func cardTapped(sender: AnyObject) {
-        detailLabel.text = cardArray.first?.answer
+        cardArray = shuffleArray(Array(deck.cards))
+        
+        currentIndex++
+    
+        if currentIndex != (cardArray.count * 2) {
+            if currentIndex % 2 == 0 {
+                detailLabel.text = cardArray[currentIndex / 2].hint
+            } else {
+                detailLabel.text = cardArray[currentIndex / 2].answer
+            }
+        } else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardArray = shuffleArray(Array(deck.cards))
-        detailLabel.text = cardArray.first?.hint
+        cardTapped(self)
 
         // Do any additional setup after loading the view.
     }

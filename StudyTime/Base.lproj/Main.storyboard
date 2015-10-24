@@ -27,7 +27,7 @@
         <!--Decks-->
         <scene sceneID="STi-NM-4ni">
             <objects>
-                <tableViewController id="E9c-NH-Bnr" customClass="FirstViewController" customModule="StudyTime" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="firstView" id="E9c-NH-Bnr" customClass="FirstViewController" customModule="StudyTime" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SmK-vG-7h7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
