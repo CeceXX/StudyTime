@@ -16,6 +16,6 @@ extension Card {
 
     @NSManaged var hint: String
     @NSManaged var answer: String
-    @NSManaged var stack: NSManagedObject
+    @NSManaged var stack: Stack
 
 }
