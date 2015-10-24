@@ -9,6 +9,7 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    
     @IBOutlet weak var detailLabel: UILabel!
     
     var cardArray: [Card] = []
