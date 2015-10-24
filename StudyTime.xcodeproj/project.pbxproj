@@ -14,6 +14,13 @@
 		A71546681BDC0DE2008D3335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71546671BDC0DE2008D3335 /* Assets.xcassets */; };
 		A715466B1BDC0DE2008D3335 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71546691BDC0DE2008D3335 /* LaunchScreen.storyboard */; };
 		A71546761BDC0DE2008D3335 /* StudyTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546751BDC0DE2008D3335 /* StudyTimeTests.swift */; };
+		A71546811BDC0DF4008D3335 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546801BDC0DF4008D3335 /* CoreDataStack.swift */; };
+		A71546851BDC0E35008D3335 /* StudyTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A71546831BDC0E35008D3335 /* StudyTime.xcdatamodeld */; };
+		A715468A1BDC0EE5008D3335 /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546861BDC0EE5008D3335 /* Card+CoreDataProperties.swift */; };
+		A715468B1BDC0EE5008D3335 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546871BDC0EE5008D3335 /* Card.swift */; };
+		A715468C1BDC0EE5008D3335 /* Stack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546881BDC0EE5008D3335 /* Stack+CoreDataProperties.swift */; };
+		A715468D1BDC0EE5008D3335 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546891BDC0EE5008D3335 /* Stack.swift */; };
+		A71546911BDC1502008D3335 /* CardManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546901BDC1502008D3335 /* CardManagerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,13 @@
 		A71546711BDC0DE2008D3335 /* StudyTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudyTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71546751BDC0DE2008D3335 /* StudyTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTimeTests.swift; sourceTree = "<group>"; };
 		A71546771BDC0DE2008D3335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A71546801BDC0DF4008D3335 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		A71546841BDC0E35008D3335 /* StudyTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudyTime.xcdatamodel; sourceTree = "<group>"; };
+		A71546861BDC0EE5008D3335 /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A71546871BDC0EE5008D3335 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		A71546881BDC0EE5008D3335 /* Stack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A71546891BDC0EE5008D3335 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		A71546901BDC1502008D3335 /* CardManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				A715465E1BDC0DE2008D3335 /* AppDelegate.swift */,
-				A71546601BDC0DE2008D3335 /* FirstViewController.swift */,
-				A71546621BDC0DE2008D3335 /* SecondViewController.swift */,
+				A715468E1BDC14DB008D3335 /* Study */,
+				A715468F1BDC14E2008D3335 /* Settings */,
+				A71546821BDC0E22008D3335 /* Model */,
 				A71546641BDC0DE2008D3335 /* Main.storyboard */,
 				A71546671BDC0DE2008D3335 /* Assets.xcassets */,
 				A71546691BDC0DE2008D3335 /* LaunchScreen.storyboard */,
@@ -97,6 +112,36 @@
 				A71546771BDC0DE2008D3335 /* Info.plist */,
 			);
 			path = StudyTimeTests;
+			sourceTree = "<group>";
+		};
+		A71546821BDC0E22008D3335 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A71546801BDC0DF4008D3335 /* CoreDataStack.swift */,
+				A71546831BDC0E35008D3335 /* StudyTime.xcdatamodeld */,
+				A71546861BDC0EE5008D3335 /* Card+CoreDataProperties.swift */,
+				A71546871BDC0EE5008D3335 /* Card.swift */,
+				A71546881BDC0EE5008D3335 /* Stack+CoreDataProperties.swift */,
+				A71546891BDC0EE5008D3335 /* Stack.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A715468E1BDC14DB008D3335 /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				A71546601BDC0DE2008D3335 /* FirstViewController.swift */,
+				A71546901BDC1502008D3335 /* CardManagerViewController.swift */,
+			);
+			name = Study;
+			sourceTree = "<group>";
+		};
+		A715468F1BDC14E2008D3335 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A71546621BDC0DE2008D3335 /* SecondViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +246,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A71546631BDC0DE2008D3335 /* SecondViewController.swift in Sources */,
+				A715468D1BDC0EE5008D3335 /* Stack.swift in Sources */,
 				A715465F1BDC0DE2008D3335 /* AppDelegate.swift in Sources */,
+				A715468C1BDC0EE5008D3335 /* Stack+CoreDataProperties.swift in Sources */,
+				A715468B1BDC0EE5008D3335 /* Card.swift in Sources */,
+				A71546851BDC0E35008D3335 /* StudyTime.xcdatamodeld in Sources */,
+				A715468A1BDC0EE5008D3335 /* Card+CoreDataProperties.swift in Sources */,
+				A71546911BDC1502008D3335 /* CardManagerViewController.swift in Sources */,
 				A71546611BDC0DE2008D3335 /* FirstViewController.swift in Sources */,
+				A71546811BDC0DF4008D3335 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +452,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A71546831BDC0E35008D3335 /* StudyTime.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A71546841BDC0E35008D3335 /* StudyTime.xcdatamodel */,
+			);
+			currentVersion = A71546841BDC0E35008D3335 /* StudyTime.xcdatamodel */;
+			path = StudyTime.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A71546531BDC0DE2008D3335 /* Project object */;
 }
