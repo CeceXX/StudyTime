@@ -258,6 +258,7 @@
 				A71546911BDC1502008D3335 /* CardManagerViewController.swift in Sources */,
 				A712B64C1BDC367D007A6F20 /* DeckSelectorViewController.swift in Sources */,
 				A71546611BDC0DE2008D3335 /* FirstViewController.swift in Sources */,
+				6E408F831BDC2542000A1022 /* GameViewController.swift in Sources */,
 				A71546811BDC0DF4008D3335 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StudyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.StudyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -397,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StudyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.StudyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";

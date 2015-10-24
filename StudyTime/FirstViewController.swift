@@ -74,7 +74,6 @@ class FirstViewController: UITableViewController {
     @IBAction func addDeck() {
         let alertController = UIAlertController(title: "Create a new deck", message: "Enter a name for the subject you will be studying", preferredStyle: .Alert)
         
-        
         // Actions
         let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAlertAction)
@@ -149,7 +148,11 @@ class FirstViewController: UITableViewController {
         alertController.addAction(cancelAlertAction)
         
         let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
-            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
+            gameView.coreDataStack = self.coreDataStack
+            gameView.deck = deck
+            self.presentViewController(gameView, animated: true, completion: nil)
         }
         alertController.addAction(freeModeAlertAction)
         
