@@ -9,7 +9,7 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    @IBOutlet weak var hintDescriptionLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
     
     var cardArray: [Card] = []
     var coreDataStack: CoreDataStack!
@@ -24,11 +24,15 @@ class GameViewController: UIViewController {
         return array
     }
     
+    @IBAction func cardTapped(sender: AnyObject) {
+        detailLabel.text = cardArray.first?.answer
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         cardArray = shuffleArray(Array(deck.cards))
-        hintDescriptionLabel.text = cardArray.first?.hint
+        detailLabel.text = cardArray.first?.hint
 
         // Do any additional setup after loading the view.
     }

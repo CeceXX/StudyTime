@@ -107,11 +107,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Game" id="cbA-Hz-wSt"/>
                     <connections>
-                        <outlet property="hintDescriptionLabel" destination="8z1-Ju-JTl" id="Yve-JK-tqs"/>
+                        <outlet property="detailLabel" destination="8z1-Ju-JTl" id="XGG-IF-IvZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rd-8i-aIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="6JE-Ty-n6v"/>
+                <tapGestureRecognizer id="6JE-Ty-n6v">
+                    <connections>
+                        <action selector="cardTapped:" destination="V10-5A-g5e" id="1I4-3z-p8w"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2292" y="-588"/>
         </scene>
