@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -47,10 +46,81 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="V10-5A-g5e" kind="show" identifier="gameSegue" id="ivP-sF-jkR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xXl-cc-YVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1533" y="-588"/>
+        </scene>
+        <!--Game-->
+        <scene sceneID="VxP-Qe-k3R">
+            <objects>
+                <viewController id="V10-5A-g5e" customClass="GameViewController" customModule="StudyTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lUV-bN-x4W"/>
+                        <viewControllerLayoutGuide type="bottom" id="gP2-Dx-W6k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ma6-sI-pUd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk9-oB-ak9">
+                                <rect key="frame" x="16" y="80" width="568" height="455"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfL-Nk-6xT">
+                                        <rect key="frame" x="8" y="102" width="552" height="21"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="61S-re-uDG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8z1-Ju-JTl">
+                                        <rect key="frame" x="8" y="131" width="552" height="105"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="105" id="UE2-W6-d1v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.94596354166666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="8z1-Ju-JTl" firstAttribute="leading" secondItem="gk9-oB-ak9" secondAttribute="leading" constant="8" id="CWH-91-2Jf"/>
+                                    <constraint firstItem="8z1-Ju-JTl" firstAttribute="top" secondItem="cfL-Nk-6xT" secondAttribute="bottom" constant="8" id="Xz7-Lt-VL6"/>
+                                    <constraint firstAttribute="trailing" secondItem="8z1-Ju-JTl" secondAttribute="trailing" constant="8" id="daJ-dx-bpX"/>
+                                    <constraint firstItem="cfL-Nk-6xT" firstAttribute="leading" secondItem="gk9-oB-ak9" secondAttribute="leading" constant="8" id="lQl-ff-GIo"/>
+                                    <constraint firstItem="cfL-Nk-6xT" firstAttribute="top" secondItem="gk9-oB-ak9" secondAttribute="top" constant="102" id="sff-VR-neB"/>
+                                    <constraint firstAttribute="trailing" secondItem="cfL-Nk-6xT" secondAttribute="trailing" constant="8" id="uIf-Cw-n7o"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6JE-Ty-n6v" appends="YES" id="3PF-gt-RVU"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gP2-Dx-W6k" firstAttribute="top" secondItem="gk9-oB-ak9" secondAttribute="bottom" constant="16" id="BI8-7B-DUw"/>
+                            <constraint firstItem="gk9-oB-ak9" firstAttribute="top" secondItem="lUV-bN-x4W" secondAttribute="bottom" constant="16" id="YB9-mB-gPh"/>
+                            <constraint firstAttribute="trailing" secondItem="gk9-oB-ak9" secondAttribute="trailing" constant="16" id="dFk-l7-UWl"/>
+                            <constraint firstItem="gk9-oB-ak9" firstAttribute="leading" secondItem="ma6-sI-pUd" secondAttribute="leading" constant="16" id="lk7-du-9hc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Game" id="cbA-Hz-wSt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1rd-8i-aIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6JE-Ty-n6v"/>
+            </objects>
+            <point key="canvasLocation" x="2292" y="-588"/>
         </scene>
         <!--Decks-->
         <scene sceneID="0NZ-XA-sLz">

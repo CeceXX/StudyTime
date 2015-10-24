@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E408F831BDC2542000A1022 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E408F821BDC2542000A1022 /* GameViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		A715465F1BDC0DE2008D3335 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715465E1BDC0DE2008D3335 /* AppDelegate.swift */; };
 		A71546611BDC0DE2008D3335 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546601BDC0DE2008D3335 /* FirstViewController.swift */; };
 		A71546631BDC0DE2008D3335 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71546621BDC0DE2008D3335 /* SecondViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E408F821BDC2542000A1022 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A715465B1BDC0DE2008D3335 /* StudyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A715465E1BDC0DE2008D3335 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A71546601BDC0DE2008D3335 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				A71546601BDC0DE2008D3335 /* FirstViewController.swift */,
 				A71546901BDC1502008D3335 /* CardManagerViewController.swift */,
+				6E408F821BDC2542000A1022 /* GameViewController.swift */,
 			);
 			name = Study;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				A715468A1BDC0EE5008D3335 /* Card+CoreDataProperties.swift in Sources */,
 				A71546911BDC1502008D3335 /* CardManagerViewController.swift in Sources */,
 				A71546611BDC0DE2008D3335 /* FirstViewController.swift in Sources */,
+				6E408F831BDC2542000A1022 /* GameViewController.swift in Sources */,
 				A71546811BDC0DF4008D3335 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StudyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.StudyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -393,6 +398,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StudyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.StudyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,6 +448,7 @@
 				A715467C1BDC0DE2008D3335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A715467D1BDC0DE2008D3335 /* Build configuration list for PBXNativeTarget "StudyTimeTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +457,7 @@
 				A715467F1BDC0DE2008D3335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
