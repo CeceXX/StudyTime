@@ -131,6 +131,15 @@ class FirstViewController: UITableViewController {
         }
         alertController.addAction(correctnessModeAlertAction)
         
+        let editCardsAlertAction = UIAlertAction(title: "Edit Cards", style: .Default) { (action) -> Void in
+            let cardManager = CardManagerViewController()
+            cardManager.coreDataStack = self.coreDataStack
+            cardManager.deck = deck
+            let navController = UINavigationController(rootViewController: cardManager)
+            self.presentViewController(navController, animated: true, completion: nil)
+        }
+        alertController.addAction(editCardsAlertAction)
+        
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 

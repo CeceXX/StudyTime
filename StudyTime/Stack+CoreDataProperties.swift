@@ -15,6 +15,6 @@ import CoreData
 extension Stack {
 
     @NSManaged var name: String
-    @NSManaged var cards: NSSet
+    @NSManaged var cards: Set<Card>
 
 }
