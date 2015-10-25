@@ -139,6 +139,22 @@ class FirstViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
+    func presentGameView(deck: Stack, gameType: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
+        gameView.coreDataStack = self.coreDataStack
+        gameView.deck = deck
+        
+        if gameType == "FreeMode" {
+            gameView.gameSelected = GameViewController.GameType.FreeMode
+        } else if gameType == "CorrectnessMode" {
+            gameView.gameSelected = GameViewController.GameType.CorectnessMode
+        }
+        
+        let navController = UINavigationController(rootViewController: gameView)
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let deck = decks[indexPath.row]
@@ -148,16 +164,12 @@ class FirstViewController: UITableViewController {
         alertController.addAction(cancelAlertAction)
         
         let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
-            gameView.coreDataStack = self.coreDataStack
-            gameView.deck = deck
-            self.presentViewController(gameView, animated: true, completion: nil)
+            self.presentGameView(deck, gameType: "FreeMode")
         }
         alertController.addAction(freeModeAlertAction)
         
         let correctnessModeAlertAction = UIAlertAction(title: "Correctness Mode", style: .Default) { (action) -> Void in
-        
+            self.presentGameView(deck, gameType: "CorrectnessMode")
         }
         alertController.addAction(correctnessModeAlertAction)
         
