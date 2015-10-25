@@ -54,8 +54,6 @@ class GameViewController: UIViewController {
             let nextFlashcardBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FastForward, target: self, action: "nextButtonTapped")
             self.navigationItem.rightBarButtonItem = nextFlashcardBarButtonItem
         }
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,13 +80,10 @@ class GameViewController: UIViewController {
         
         if !animated {
             if currentIndex % 2 == 0 {
-                
                 UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: { () -> Void in
                     self.detailLabel.text = self.cardArray[self.currentIndex / 2].hint
                     
-                    
-                    
-                    }, completion: nil)
+                }, completion: nil)
             }
             else {
                 UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
