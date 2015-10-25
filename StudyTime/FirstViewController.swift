@@ -226,6 +226,7 @@ extension FirstViewController: MCBrowserViewControllerDelegate {
         browserViewController.dismissViewControllerAnimated(true, completion: nil)
         
         let deckSelector = DeckSelectorViewController()
+        deckSelector.coreDataStack = coreDataStack
         let navController = UINavigationController(rootViewController: deckSelector)
         self.presentViewController(navController, animated: true, completion: nil)
     }
