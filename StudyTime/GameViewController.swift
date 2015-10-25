@@ -17,9 +17,9 @@ enum GameType: Int {
 class GameViewController: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var correctnessTextField: UITextField!
-    @IBOutlet var cardGestureRegognizer: UITapGestureRecognizer!
     
     var cardArray: [Card] = []
     var coreDataStack: CoreDataStack!
@@ -42,11 +42,15 @@ class GameViewController: UIViewController {
         
         if gameSelected == .CorrectnessMode {
             correctnessTextField.hidden = false
-            cardGestureRegognizer.enabled = false
         }
         else if gameSelected == .FreeMode {
             correctnessTextField.hidden = true
-            cardGestureRegognizer.enabled = true
+            
+            // Tap gesture recognizer
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: "didTap:")
+            tapRecognizer.numberOfTapsRequired = 1
+            tapRecognizer.numberOfTouchesRequired = 1
+            cardView.addGestureRecognizer(tapRecognizer)
         }
 
         // Bar button items
@@ -66,44 +70,108 @@ class GameViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func nextButtonTapped() {
-        if correctnessTextField.text == cardArray[currentIndex].answer {
+        guard let guessText = correctnessTextField.text where guessText.characters.count > 0 else {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.cardView.transform = CGAffineTransformMakeTranslation(-5, 0)
+                }, completion: { (success) -> Void in
+                    UIView.animateWithDuration(0.5, animations: { () -> Void in
+                        self.cardView.transform = CGAffineTransformMakeTranslation(10, 0)
+                        }, completion: { (success) -> Void in
+                            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                                self.cardView.transform = CGAffineTransformIdentity
+                                }, completion: { (success) -> Void in
+                                    
+                            })
+                    })
+            })
+            return
+        }
+        
+        if currentIndex % 2 == 0 {
+            // New questions
             cardTapped(true)
+        }
+        else {
+            // Check answer
+            let answer = cardArray[currentIndex].answer
+            if guessText.compare(answer, options: .CaseInsensitiveSearch, range: nil, locale: nil) == NSComparisonResult.OrderedSame  {
+                cardTapped(true, correct: true)
+            }
+            else {
+                cardTapped(true, correct: false)
+            }
         }
     }
     
-    @IBAction func cardTapped(animated: Bool) {
+    @IBAction func endButtonTapped() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func dismissKeyboard(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    func didTap(gestureRecognizer: UITapGestureRecognizer) {
+        self.cardTapped(true)
+    }
+    
+    func cardTapped(animated: Bool, correct: Bool? = nil) {
+        self.dismissKeyboard(correctnessTextField)
         
         currentIndex++
-        
+        print("Current index: \(currentIndex)/\(cardArray.count * 2)")
         guard currentIndex != (cardArray.count * 2) else {
             self.dismissViewControllerAnimated(true, completion: nil)
             return
         }
         
-        if !animated {
+        if animated {
             if currentIndex % 2 == 0 {
+                // New Question
                 
+                // Reset view
+                cardView.backgroundColor = UIColor.whiteColor()
+                
+                // Reset text field
+                correctnessTextField.enabled = true
+                correctnessTextField.text = ""
+                
+                
+                // Animate
                 UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: { () -> Void in
+                    
+                    self.typeLabel.text = "Hint"
                     self.detailLabel.text = self.cardArray[self.currentIndex / 2].hint
-                    
-                    
-                    
-                    }, completion: nil)
+
+                    }, completion: { (success) -> Void in
+                        if self.gameSelected == .CorrectnessMode {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.correctnessTextField.becomeFirstResponder()
+                            })
+                        }
+                })
+
             }
             else {
+                // Display answer
+                correctnessTextField.enabled = false
+                
                 UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+                    
+                    self.typeLabel.text = "Answer"
+                    
                     switch self.gameSelected {
                     case .FreeMode:
                         self.detailLabel.text = self.cardArray[self.currentIndex / 2].answer
-                        
-                        if self.gameSelected == .CorrectnessMode {
-                            self.cardView.backgroundColor = UIColor.redColor()
-                        }
                     case .CorrectnessMode:
-                        self.detailLabel.text = "Correct!"
-                        
-                        if self.gameSelected == .CorrectnessMode {
+                        if let correct = correct where correct == true {
+                            self.detailLabel.text = "Correct!"
                             self.cardView.backgroundColor = UIColor.greenColor()
+                        }
+                        else {
+                            let realAnswer = self.cardArray[self.currentIndex / 2].answer
+                            self.detailLabel.text = "Incorrect! The answer was \"\(realAnswer)\""
+                            self.cardView.backgroundColor = UIColor.redColor()
                         }
                     }
                 }, completion: nil)
@@ -111,17 +179,16 @@ class GameViewController: UIViewController {
         }
         else {
             if currentIndex % 2 == 0 {
+                typeLabel.text = "Hint"
                 detailLabel.text = cardArray[currentIndex / 2].hint
             }
             else {
+                typeLabel.text = "Answer"
                 detailLabel.text = cardArray[currentIndex / 2].answer
             }
         }
     }
 
-    @IBAction func endButtonTapped() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
 }
 
 extension CollectionType {

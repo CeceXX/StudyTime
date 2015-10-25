@@ -167,7 +167,7 @@ class FirstViewController: UITableViewController {
             self.presentViewController(navController, animated: true, completion: nil)
         }
         else {
-            let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .ActionSheet)
             
             let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(cancelAlertAction)
