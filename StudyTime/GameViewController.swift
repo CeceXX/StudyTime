@@ -8,10 +8,18 @@
 
 import UIKit
 
+enum GameType: Int {
+    case FreeMode
+    case CorrectnessMode
+}
+
 class GameViewController: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var correctnessTextField: UITextField!
+    @IBOutlet var cardGestureRegognizer: UITapGestureRecognizer!
     
     var cardArray: [Card] = []
     var coreDataStack: CoreDataStack!
@@ -19,12 +27,25 @@ class GameViewController: UIViewController {
     
     var currentIndex = -1
     
+    var gameSelected: GameType = .FreeMode
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         cardTapped(false)
+        
+        if gameSelected == .CorrectnessMode {
+            nextButton.enabled = true
+            correctnessTextField.hidden = false
+            cardGestureRegognizer.enabled = false
+        }
+        else if gameSelected == .FreeMode {
+            nextButton.enabled = false
+            correctnessTextField.hidden = true
+            cardGestureRegognizer.enabled = true
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -38,43 +59,58 @@ class GameViewController: UIViewController {
     
     func shuffleArray<T>(var array: Array<T>) -> Array<T> {
         for var index = array.count - 1; index > 0; index-- {
-            let j = Int(arc4random_uniform(UInt32(index-1)))
+            let randomNum = Int(arc4random_uniform(UInt32(index-1)))
             
-            swap(&array[index], &array[j])
+            swap(&array[index], &array[randomNum])
         }
         return array
     }
     
+    @IBAction func nextButtonTapped() {
+        if correctnessTextField.text == cardArray[currentIndex].answer {
+            cardTapped(true)
+        }
+    }
+    
     @IBAction func cardTapped(animated: Bool) {
         cardArray = shuffleArray(deck.cards.array as! [Card])
+        print(cardArray)
         
         currentIndex++
         
-        if currentIndex != (cardArray.count * 2) {
+        guard currentIndex != (cardArray.count * 2) else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            return
+        }
+        
+        if !animated {
             if currentIndex % 2 == 0 {
-                if animated {
-                    detailLabel.text = cardArray[currentIndex / 2].hint
-                }
-                else {
-                    UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: { () -> Void in
-                        self.detailLabel.text = self.cardArray[self.currentIndex / 2].hint
+                UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: { () -> Void in
+                    self.detailLabel.text = self.cardArray[self.currentIndex / 2].hint
                     }, completion: nil)
-                }
             }
             else {
-                if animated {
-                    detailLabel.text = cardArray[currentIndex / 2].answer
-                }
-                else {
-                    UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+                UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+                    switch self.gameSelected {
+                    case .FreeMode:
                         self.detailLabel.text = self.cardArray[self.currentIndex / 2].answer
-                    }, completion: nil)
-                }
+                    case .CorrectnessMode:
+                        self.detailLabel.text = "Correct!"
+                    }
+                }, completion: nil)
             }
         }
         else {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            if currentIndex % 2 == 0 {
+                detailLabel.text = cardArray[currentIndex / 2].hint
+            }
+            else {
+                detailLabel.text = cardArray[currentIndex / 2].answer
+            }
         }
     }
 
+    @IBAction func endButtonTapped() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

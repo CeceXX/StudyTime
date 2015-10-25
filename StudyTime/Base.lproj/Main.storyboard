@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -55,6 +55,23 @@
             </objects>
             <point key="canvasLocation" x="1533" y="-588"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Crd-7p-AJL">
+            <objects>
+                <navigationController id="D14-9l-VnC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UfX-8r-ip1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="V10-5A-g5e" kind="relationship" relationship="rootViewController" id="Rc3-fa-DBy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ajh-0K-e41" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2234" y="-588"/>
+        </scene>
         <!--Game-->
         <scene sceneID="VxP-Qe-k3R">
             <objects>
@@ -68,10 +85,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk9-oB-ak9">
-                                <rect key="frame" x="16" y="36" width="568" height="548"/>
+                                <rect key="frame" x="16" y="80" width="568" height="504"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8z1-Ju-JTl">
-                                        <rect key="frame" x="8" y="219" width="552" height="105"/>
+                                        <rect key="frame" x="8" y="180" width="552" height="105"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="105" id="UE2-W6-d1v"/>
@@ -85,14 +102,26 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-dw-79T">
+                                        <rect key="frame" x="177" y="293" width="214" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="214" id="0tU-34-jCZ"/>
+                                            <constraint firstAttribute="height" constant="30" id="hxL-fb-mw6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.94596354166666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="jAg-dw-79T" firstAttribute="centerX" secondItem="gk9-oB-ak9" secondAttribute="centerX" id="96x-r1-vHh"/>
+                                    <constraint firstItem="jAg-dw-79T" firstAttribute="top" secondItem="8z1-Ju-JTl" secondAttribute="bottom" constant="8" id="ATQ-Qq-jXn"/>
                                     <constraint firstItem="8z1-Ju-JTl" firstAttribute="leading" secondItem="gk9-oB-ak9" secondAttribute="leading" constant="8" id="CWH-91-2Jf"/>
-                                    <constraint firstAttribute="bottom" secondItem="8z1-Ju-JTl" secondAttribute="bottom" constant="224" id="GsJ-kZ-Te7"/>
-                                    <constraint firstItem="8z1-Ju-JTl" firstAttribute="top" secondItem="gk9-oB-ak9" secondAttribute="top" constant="219" id="Rin-i9-hbj"/>
+                                    <constraint firstAttribute="bottom" secondItem="8z1-Ju-JTl" secondAttribute="bottom" constant="219" id="GsJ-kZ-Te7"/>
+                                    <constraint firstItem="8z1-Ju-JTl" firstAttribute="top" secondItem="gk9-oB-ak9" secondAttribute="top" constant="180" id="Rin-i9-hbj"/>
                                     <constraint firstAttribute="trailing" secondItem="8z1-Ju-JTl" secondAttribute="trailing" constant="8" id="daJ-dx-bpX"/>
                                 </constraints>
                                 <connections>
@@ -109,10 +138,24 @@
                             <constraint firstItem="gk9-oB-ak9" firstAttribute="leading" secondItem="ma6-sI-pUd" secondAttribute="leading" constant="16" id="lk7-du-9hc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Game" id="cbA-Hz-wSt"/>
+                    <navigationItem key="navigationItem" title="Game" id="cbA-Hz-wSt">
+                        <barButtonItem key="leftBarButtonItem" title="End" id="ty1-0y-npf">
+                            <connections>
+                                <action selector="endButtonTapped" destination="V10-5A-g5e" id="5UI-Yd-Ekv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="k2L-1Y-jcu">
+                            <connections>
+                                <action selector="nextButtonTapped" destination="V10-5A-g5e" id="Vnv-9m-1G2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="cardGestureRegognizer" destination="6JE-Ty-n6v" id="hVk-sL-tON"/>
                         <outlet property="cardView" destination="gk9-oB-ak9" id="G3w-Ue-1Qi"/>
+                        <outlet property="correctnessTextField" destination="jAg-dw-79T" id="rzw-SE-jku"/>
                         <outlet property="detailLabel" destination="8z1-Ju-JTl" id="XGG-IF-IvZ"/>
+                        <outlet property="nextButton" destination="k2L-1Y-jcu" id="g8W-zE-Kz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rd-8i-aIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,7 +165,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2292" y="-588"/>
+            <point key="canvasLocation" x="2918" y="-588"/>
         </scene>
         <!--Decks-->
         <scene sceneID="0NZ-XA-sLz">

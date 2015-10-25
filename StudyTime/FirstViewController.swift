@@ -139,50 +139,51 @@ class FirstViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
+    func presentGameView(deck: Stack, gameType: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
+        gameView.coreDataStack = self.coreDataStack
+        gameView.deck = deck
+        
+        if gameType == "FreeMode" {
+            gameView.gameSelected = GameType.FreeMode
+        } else if gameType == "CorrectnessMode" {
+            gameView.gameSelected = GameType.CorrectnessMode
+        }
+        
+        let navController = UINavigationController(rootViewController: gameView)
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let deck = decks[indexPath.row]
+        let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .Alert)
         
-        if deck.cards.count == 0 {
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAlertAction)
+        
+        let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
+            self.presentGameView(deck, gameType: "FreeMode")
+        }
+        alertController.addAction(freeModeAlertAction)
+        
+        let correctnessModeAlertAction = UIAlertAction(title: "Correctness Mode", style: .Default) { (action) -> Void in
+            self.presentGameView(deck, gameType: "CorrectnessMode")
+        }
+        alertController.addAction(correctnessModeAlertAction)
+        
+        let editCardsAlertAction = UIAlertAction(title: "Edit Cards", style: .Default) { (action) -> Void in
             let cardManager = CardManagerViewController()
             cardManager.coreDataStack = self.coreDataStack
             cardManager.deck = deck
             let navController = UINavigationController(rootViewController: cardManager)
             self.presentViewController(navController, animated: true, completion: nil)
         }
-        else {
-            let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .ActionSheet)
-            
-            let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAlertAction)
-            
-            let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
-                gameView.coreDataStack = self.coreDataStack
-                gameView.deck = deck
-                self.presentViewController(gameView, animated: true, completion: nil)
-            }
-            alertController.addAction(freeModeAlertAction)
-            
-            let correctnessModeAlertAction = UIAlertAction(title: "Correctness Mode", style: .Default) { (action) -> Void in
-                
-            }
-            alertController.addAction(correctnessModeAlertAction)
-            
-            let editCardsAlertAction = UIAlertAction(title: "Edit Cards", style: .Default) { (action) -> Void in
-                let cardManager = CardManagerViewController()
-                cardManager.coreDataStack = self.coreDataStack
-                cardManager.deck = deck
-                let navController = UINavigationController(rootViewController: cardManager)
-                self.presentViewController(navController, animated: true, completion: nil)
-            }
-            alertController.addAction(editCardsAlertAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+        alertController.addAction(editCardsAlertAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
-
 }
 
 extension FirstViewController: MCSessionDelegate {
