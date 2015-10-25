@@ -128,6 +128,14 @@ class GameViewController: UIViewController {
     
     /// Tap to next guestion
     func didTap(gestureRecognizer: UITapGestureRecognizer) {
+        if showingAnswer {
+            // New questions
+            currentIndex++
+            showingAnswer = false
+        }
+        else {
+            showingAnswer = true
+        }
         self.cardTapped(true)
     }
     

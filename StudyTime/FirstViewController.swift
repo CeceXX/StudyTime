@@ -96,7 +96,13 @@ class FirstViewController: UITableViewController {
     
     @IBAction func lookForPlayers() {
         
-        self.presentViewController(browser, animated: true, completion: nil)
+//        self.presentViewController(browser, animated: true, completion: nil)
+        
+//        let demoQuestionViewController = DemoQuestionsViewController()
+//        self.presentViewController(demoQuestionViewController, animated: true, completion: nil)
+        
+        let demoAnswersViewController = DemoAnswersViewController()
+        self.presentViewController(demoAnswersViewController, animated: true, completion: nil)
     }
     
     func createDeckWithName(name: String) {
