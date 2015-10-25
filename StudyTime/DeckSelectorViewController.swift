@@ -26,6 +26,8 @@ class DeckSelectorViewController: UITableViewController {
         
         self.title = "Select study deck to use"
         
+        getDecks()
+        
         // Bar button item
         let cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
         self.navigationItem.leftBarButtonItem = cancelBarButtonItem

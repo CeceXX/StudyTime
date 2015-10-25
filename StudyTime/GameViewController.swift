@@ -10,6 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var detailLabel: UILabel!
     
     var cardArray: [Card] = []
@@ -18,35 +19,12 @@ class GameViewController: UIViewController {
     
     var currentIndex = -1
     
-    func shuffleArray<T>(var array: Array<T>) -> Array<T> {
-        for var index = array.count - 1; index > 0; index-- {
-            let j = Int(arc4random_uniform(UInt32(index-1)))
-        
-            swap(&array[index], &array[j])
-        }
-        return array
-    }
-    
-    @IBAction func cardTapped(sender: AnyObject) {
-        cardArray = shuffleArray(Array(deck.cards))
-        
-        currentIndex++
-    
-        if currentIndex != (cardArray.count * 2) {
-            if currentIndex % 2 == 0 {
-                detailLabel.text = cardArray[currentIndex / 2].hint
-            } else {
-                detailLabel.text = cardArray[currentIndex / 2].answer
-            }
-        } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardTapped(self)
+        cardTapped(false)
 
         // Do any additional setup after loading the view.
     }
@@ -56,15 +34,47 @@ class GameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Actions
+    
+    func shuffleArray<T>(var array: Array<T>) -> Array<T> {
+        for var index = array.count - 1; index > 0; index-- {
+            let j = Int(arc4random_uniform(UInt32(index-1)))
+            
+            swap(&array[index], &array[j])
+        }
+        return array
     }
-    */
+    
+    @IBAction func cardTapped(animated: Bool) {
+        cardArray = shuffleArray(Array(deck.cards))
+        
+        currentIndex++
+        
+        if currentIndex != (cardArray.count * 2) {
+            if currentIndex % 2 == 0 {
+                if animated {
+                    detailLabel.text = cardArray[currentIndex / 2].hint
+                }
+                else {
+                    UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: { () -> Void in
+                        self.detailLabel.text = self.cardArray[self.currentIndex / 2].hint
+                    }, completion: nil)
+                }
+            }
+            else {
+                if animated {
+                    detailLabel.text = cardArray[currentIndex / 2].answer
+                }
+                else {
+                    UIView.transitionWithView(cardView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+                        self.detailLabel.text = self.cardArray[self.currentIndex / 2].answer
+                    }, completion: nil)
+                }
+            }
+        }
+        else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 
 }
