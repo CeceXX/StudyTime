@@ -15,6 +15,5 @@ import CoreData
 extension Stack {
 
     @NSManaged var name: String
-    @NSManaged var cards: Set<Card>
-
+    @NSManaged var cards: NSOrderedSet
 }

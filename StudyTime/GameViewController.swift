@@ -46,7 +46,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func cardTapped(animated: Bool) {
-        cardArray = shuffleArray(Array(deck.cards))
+        cardArray = shuffleArray(deck.cards.array as! [Card])
         
         currentIndex++
         

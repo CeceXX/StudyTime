@@ -19,7 +19,7 @@ class CardManagerViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = deck.name
+        self.title = "\(deck.name) Studycards"
         
         // Bar button items
         let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "done")
@@ -64,9 +64,11 @@ class CardManagerViewController: UITableViewController {
         // Text fields
         alertController.addTextFieldWithConfigurationHandler { (textfield) -> Void in
             textfield.placeholder = "Hint"
+            textfield.autocapitalizationType = .Words
         }
         alertController.addTextFieldWithConfigurationHandler { (textfield) -> Void in
             textfield.placeholder = "Answer"
+            textfield.autocapitalizationType = .Words
         }
         
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -86,6 +88,47 @@ class CardManagerViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
+    
+    func editFlashcard(card: Card) {
+        let alertController = UIAlertController(title: "Edit flash card", message: "Enter the hint to be given and the answer.", preferredStyle: .Alert)
+        
+        
+        // Actions
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAlertAction)
+        
+        let createDeckAlertAction = UIAlertAction(title: "Save", style: .Default) { (action) -> Void in
+            guard let textFields = alertController.textFields,
+                hintTextFieldText = textFields[0].text,
+                answerTextFieldText = textFields[1].text where hintTextFieldText.characters.count > 0 && answerTextFieldText.characters.count > 0 else { return }
+            
+            card.hint = hintTextFieldText
+            card.answer = answerTextFieldText
+            self.coreDataStack.saveContext()
+        }
+        alertController.addAction(createDeckAlertAction)
+        
+        // Text fields
+        alertController.addTextFieldWithConfigurationHandler { (textfield) -> Void in
+            textfield.placeholder = "Hint"
+            textfield.text = card.hint
+            textfield.autocapitalizationType = .Words
+        }
+        alertController.addTextFieldWithConfigurationHandler { (textfield) -> Void in
+            textfield.placeholder = "Answer"
+            textfield.text = card.answer
+            textfield.autocapitalizationType = .Words
+        }
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteFlashcard(card: Card) {
+        coreDataStack.context.deleteObject(card)
+        coreDataStack.saveContext()
+        
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -101,9 +144,33 @@ class CardManagerViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         // Configure the cell...
-        let card = deck.cards[deck.cards.startIndex.advancedBy(indexPath.row)]
+        let card = deck.cards.objectAtIndex(indexPath.row) as! Card
         cell.textLabel?.text = card.hint
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .Delete
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let card = deck.cards.objectAtIndex(indexPath.row) as! Card
+        
+        let deleteAction = UITableViewRowAction(style: .Destructive, title: "Delete") { [weak self] (tableViewRowAction, indexPath) -> Void in
+            guard let wSelf = self else { return }
+            wSelf.deleteFlashcard(card)
+        }
+        
+        let editAction = UITableViewRowAction(style: .Normal, title: "Edit") { [weak self] (tableViewRowAction, indexPath) -> Void in
+            guard let wSelf = self else { return }
+            wSelf.editFlashcard(card)
+        }
+        
+        return [deleteAction, editAction]
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
 }
