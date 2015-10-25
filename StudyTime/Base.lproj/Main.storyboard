@@ -87,8 +87,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk9-oB-ak9">
                                 <rect key="frame" x="16" y="80" width="568" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hint description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8z1-Ju-JTl">
-                                        <rect key="frame" x="8" y="183" width="552" height="105"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8z1-Ju-JTl">
+                                        <rect key="frame" x="8" y="180" width="552" height="105"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="105" id="UE2-W6-d1v"/>
@@ -102,14 +102,26 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-dw-79T">
+                                        <rect key="frame" x="177" y="293" width="214" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="214" id="0tU-34-jCZ"/>
+                                            <constraint firstAttribute="height" constant="30" id="hxL-fb-mw6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.94596354166666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="jAg-dw-79T" firstAttribute="centerX" secondItem="gk9-oB-ak9" secondAttribute="centerX" id="96x-r1-vHh"/>
+                                    <constraint firstItem="jAg-dw-79T" firstAttribute="top" secondItem="8z1-Ju-JTl" secondAttribute="bottom" constant="8" id="ATQ-Qq-jXn"/>
                                     <constraint firstItem="8z1-Ju-JTl" firstAttribute="leading" secondItem="gk9-oB-ak9" secondAttribute="leading" constant="8" id="CWH-91-2Jf"/>
-                                    <constraint firstAttribute="bottom" secondItem="8z1-Ju-JTl" secondAttribute="bottom" constant="224" id="GsJ-kZ-Te7"/>
-                                    <constraint firstItem="8z1-Ju-JTl" firstAttribute="top" secondItem="gk9-oB-ak9" secondAttribute="top" constant="219" id="Rin-i9-hbj"/>
+                                    <constraint firstAttribute="bottom" secondItem="8z1-Ju-JTl" secondAttribute="bottom" constant="219" id="GsJ-kZ-Te7"/>
+                                    <constraint firstItem="8z1-Ju-JTl" firstAttribute="top" secondItem="gk9-oB-ak9" secondAttribute="top" constant="180" id="Rin-i9-hbj"/>
                                     <constraint firstAttribute="trailing" secondItem="8z1-Ju-JTl" secondAttribute="trailing" constant="8" id="daJ-dx-bpX"/>
                                 </constraints>
                                 <connections>
@@ -129,17 +141,19 @@
                     <navigationItem key="navigationItem" title="Game" id="cbA-Hz-wSt">
                         <barButtonItem key="leftBarButtonItem" title="End" id="ty1-0y-npf">
                             <connections>
-                                <action selector="endButtonTapped:" destination="V10-5A-g5e" id="2h9-ly-AMR"/>
+                                <action selector="endButtonTapped" destination="V10-5A-g5e" id="5UI-Yd-Ekv"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="k2L-1Y-jcu">
                             <connections>
-                                <action selector="nextButtonTapped:" destination="V10-5A-g5e" id="ade-3m-5p4"/>
+                                <action selector="nextButtonTapped" destination="V10-5A-g5e" id="Vnv-9m-1G2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cardGestureRegognizer" destination="6JE-Ty-n6v" id="hVk-sL-tON"/>
                         <outlet property="cardView" destination="gk9-oB-ak9" id="G3w-Ue-1Qi"/>
+                        <outlet property="correctnessTextField" destination="jAg-dw-79T" id="rzw-SE-jku"/>
                         <outlet property="detailLabel" destination="8z1-Ju-JTl" id="XGG-IF-IvZ"/>
                         <outlet property="nextButton" destination="k2L-1Y-jcu" id="g8W-zE-Kz4"/>
                     </connections>

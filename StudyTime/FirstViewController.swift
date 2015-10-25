@@ -146,9 +146,9 @@ class FirstViewController: UITableViewController {
         gameView.deck = deck
         
         if gameType == "FreeMode" {
-            gameView.gameSelected = GameViewController.GameType.FreeMode
+            gameView.gameSelected = GameType.FreeMode
         } else if gameType == "CorrectnessMode" {
-            gameView.gameSelected = GameViewController.GameType.CorectnessMode
+            gameView.gameSelected = GameType.CorrectnessMode
         }
         
         let navController = UINavigationController(rootViewController: gameView)
@@ -158,6 +158,7 @@ class FirstViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let deck = decks[indexPath.row]
+        let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .Alert)
         
         let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAlertAction)
@@ -179,39 +180,10 @@ class FirstViewController: UITableViewController {
             let navController = UINavigationController(rootViewController: cardManager)
             self.presentViewController(navController, animated: true, completion: nil)
         }
-        else {
-            let alertController = UIAlertController(title: deck.name, message: nil, preferredStyle: .ActionSheet)
-            
-            let cancelAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAlertAction)
-            
-            let freeModeAlertAction = UIAlertAction(title: "Free Mode", style: .Default) { (action) -> Void in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let gameView = storyboard.instantiateViewControllerWithIdentifier("gameView") as! GameViewController
-                gameView.coreDataStack = self.coreDataStack
-                gameView.deck = deck
-                self.presentViewController(gameView, animated: true, completion: nil)
-            }
-            alertController.addAction(freeModeAlertAction)
-            
-            let correctnessModeAlertAction = UIAlertAction(title: "Correctness Mode", style: .Default) { (action) -> Void in
-                
-            }
-            alertController.addAction(correctnessModeAlertAction)
-            
-            let editCardsAlertAction = UIAlertAction(title: "Edit Cards", style: .Default) { (action) -> Void in
-                let cardManager = CardManagerViewController()
-                cardManager.coreDataStack = self.coreDataStack
-                cardManager.deck = deck
-                let navController = UINavigationController(rootViewController: cardManager)
-                self.presentViewController(navController, animated: true, completion: nil)
-            }
-            alertController.addAction(editCardsAlertAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+        alertController.addAction(editCardsAlertAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
-
 }
 
 extension FirstViewController: MCSessionDelegate {
