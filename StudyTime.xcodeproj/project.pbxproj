@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E095ACA1BDD3CEF00A189DE /* DemoQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E095AC91BDD3CEF00A189DE /* DemoQuestionsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		6E095ACC1BDD3CFF00A189DE /* DemoAnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E095ACB1BDD3CFF00A189DE /* DemoAnswersViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		6E095ACA1BDD3CEF00A189DE /* DemoQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E095AC91BDD3CEF00A189DE /* DemoQuestionsViewController.swift */; };
+		6E095ACC1BDD3CFF00A189DE /* DemoAnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E095ACB1BDD3CFF00A189DE /* DemoAnswersViewController.swift */; };
 		A712B64C1BDC367D007A6F20 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A712B64E1BDC515A007A6F20 /* DeckSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712B64D1BDC515A007A6F20 /* DeckSelectorViewController.swift */; };
 		A712B64F1BDC5193007A6F20 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E408F821BDC2542000A1022 /* GameViewController.swift */; };
@@ -412,6 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.StudyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -424,6 +425,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.StudyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
