@@ -63,11 +63,12 @@ class CardManagerViewController: UITableViewController {
         
         // Text fields
         alertController.addTextFieldWithConfigurationHandler { (textfield) -> Void in
-            textfield.placeholder = "Hint"
+            textfield.placeholder = "Answer"
             textfield.autocapitalizationType = .Words
         }
+        
         alertController.addTextFieldWithConfigurationHandler { (textfield) -> Void in
-            textfield.placeholder = "Answer"
+            textfield.placeholder = "Hint"
             textfield.autocapitalizationType = .Words
         }
         
